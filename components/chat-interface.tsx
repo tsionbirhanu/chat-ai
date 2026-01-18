@@ -395,7 +395,12 @@ export function ChatInterface() {
             <h2 className="text-sm font-medium text-[#111625] dark:text-[#FFFFFF] leading-5 tracking-[-0.006em] text-left">
               {headerInfo.name}
             </h2>
-            <p className="text-xs font-medium leading-4 tracking-[0px] text-[#38C793] text-left">
+            <p
+              className={`text-xs font-medium leading-4 tracking-[0px] text-left ${
+                headerInfo.status === "Online"
+                  ? "text-[#10B981]" // green for online
+                  : "text-gray-400 dark:text-gray-500" // gray for offline
+              }`}>
               {headerInfo.status}
             </p>
           </div>
@@ -519,7 +524,7 @@ export function ChatInterface() {
           ) : (
             <>
               {/* Today divider */}
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center pt-70">
                 <div className="w-[65px] h-7 rounded-[60px] bg-white dark:bg-[#2C2C2C] flex items-center justify-center px-3 py-1">
                   <span className="text-sm font-medium text-[#596881] dark:text-[#9CA3AF] leading-5 tracking-[-0.006em]">
                     Today
@@ -614,6 +619,10 @@ export function ChatInterface() {
                             width={12}
                             height={12}
                             className="w-3 h-3 dark:invert dark:opacity-70"
+                            style={{
+                              filter:
+                                "brightness(0) saturate(100%) invert(45%) sepia(32%) saturate(646%) hue-rotate(120deg) brightness(92%) contrast(90%)",
+                            }}
                           />
                           <span className="text-xs font-normal text-[#8B8B8B] dark:text-[#9CA3AF] leading-4 tracking-[0px]">
                             {formatMessageTime(message.createdAt)}

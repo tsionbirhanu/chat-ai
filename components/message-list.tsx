@@ -401,71 +401,7 @@ export function MessageList() {
     <div
       className="w-full lg:w-[352px] bg-[#FFFFFF] dark:bg-[#1C1C1C] flex flex-col overflow-hidden flex-shrink-0 rounded-3xl"
       style={{ padding: "24px", gap: "24px" }}>
-      {/* User Info Section */}
-
-      {/* <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold overflow-hidden">
-            {currentUser?.avatarUrl ? (
-              <img src={currentUser.avatarUrl} alt="User" className="w-full h-full object-cover" />
-            ) : (
-              <span>{currentUser?.displayName?.charAt(0) || currentUser?.username?.charAt(0) || 'U'}</span>
-            )}
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-foreground truncate">{currentUser?.displayName || currentUser?.username}</h3>
-            <p className="text-sm text-muted-foreground truncate">{currentUser?.email}</p>
-          </div>
-        </div> */}
-
-      {/* Credits Info - matching Figma
-        <div className="bg-background rounded-lg p-3 space-y-2">
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Credits</span>
-            <button className="text-emerald-500 hover:underline text-xs">+25 tomorrow</button>
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-foreground">20 left</span>
-          </div>
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <span>5 of 25 used today</span>
-            <span>Renews in: 6h 24m</span>
-          </div>
-          <div className="w-full bg-muted rounded-full h-2">
-            <div className="bg-emerald-500 h-2 rounded-full" style={{ width: '20%' }}></div>
-          </div>
-          <button className="w-full mt-2 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors text-sm font-medium flex items-center justify-center gap-2">
-            <span>⭐</span>
-            Win free credits
-          </button>
-        </div> */}
-
-      {/* Action Buttons
-        <div className="mt-4 flex gap-2">
-          <button
-            onClick={() => setActivePage("profile")}
-            className="flex-1 py-2 px-3 bg-background hover:bg-muted rounded-lg transition-colors text-sm font-medium flex items-center justify-center gap-2"
-            title="Rename file"
-          >
-            <User size={16} />
-            <span className="hidden xl:inline">Rename file</span>
-          </button>
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="flex-1 py-2 px-3 bg-background hover:bg-muted rounded-lg transition-colors text-sm font-medium flex items-center justify-center gap-2"
-            title="Theme Style"
-          >
-            <Palette size={16} />
-            <span className="hidden xl:inline">Theme Style</span>
-          </button>
-          <button
-            onClick={handleLogout}
-            className="flex-1 py-2 px-3 bg-background hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg transition-colors text-sm font-medium flex items-center justify-center gap-2"
-            title="Log out"
-          >
-            <LogOut size={16} />
-            <span className="hidden xl:inline">Log out</span>
-          </button>
-        </div> */}
+      {/* User Info Section *
 
       {/* Header */}
       <div className="flex flex-col" style={{ gap: "24px" }}>
@@ -676,25 +612,116 @@ export function MessageList() {
                 <div key={session.id} className="relative overflow-hidden">
                   {/* For first item: Horizontal layout with archive button */}
                   {isFirstItem ? (
-                    <div
-                      className="flex"
-                      style={{ gap: "8px", width: "100%", maxWidth: "352px" }}>
-                      {/* Message Container - Fill 280px, Hug 64px, radius 12px, padding 12px, gap 12px */}
+                    <div className="relative overflow-hidden">
+                      {/* Swipe Action Buttons (background) */}
+                      <div className="absolute inset-0 flex justify-between">
+                        {/* Swipe RIGHT → Archive (appears on LEFT side) */}
+                        <div
+                          className={`flex items-center justify-start transition-all duration-200 ${
+                            swipeOffset > 30
+                              ? "w-20 opacity-100"
+                              : "w-0 opacity-0"
+                          }`}>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              console.log("Archive:", session.id);
+                            }}
+                            className="flex flex-col items-center justify-center bg-[#1E9A80] hover:bg-[#1a8a70] transition-colors"
+                            style={{
+                              width: "64px",
+                              height: "64px",
+                              borderRadius: "12px",
+                              padding: "12px",
+                              gap: "8px",
+                            }}>
+                            <Image
+                              src="/arc.svg"
+                              width={14}
+                              height={12}
+                              alt="Archive"
+                              className="flex-shrink-0"
+                            />
+                            <span
+                              className="text-[#FFFFFF]"
+                              style={{
+                                fontSize: "12px",
+                                lineHeight: "16px",
+                                fontWeight: 500,
+                              }}>
+                              Archive
+                            </span>
+                          </button>
+                        </div>
+
+                        {/* Swipe LEFT → Unread (appears on RIGHT side) */}
+                        <div
+                          className={`flex items-center justify-end transition-all duration-200 ${
+                            swipeOffset < -30
+                              ? "w-20 opacity-100"
+                              : "w-0 opacity-0"
+                          }`}>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              console.log("Mark as unread:", session.id);
+                            }}
+                            className="flex flex-col items-center justify-center bg-[#1E9A80] hover:bg-[#1a8a70] transition-colors"
+                            style={{
+                              width: "64px",
+                              height: "64px",
+                              borderRadius: "12px",
+                              padding: "12px",
+                              gap: "8px",
+                            }}>
+                            <Image
+                              src="/message.svg"
+                              width={14}
+                              height={12}
+                              alt="Unread"
+                              className="flex-shrink-0"
+                            />
+                            <span
+                              className="text-[#FFFFFF]"
+                              style={{
+                                fontSize: "12px",
+                                lineHeight: "16px",
+                                fontWeight: 500,
+                              }}>
+                              Unread
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Session Item (foreground) */}
                       <div
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          selectSession(session.id);
-                        }}
+                        onClick={() =>
+                          !swipeState.isSwiping && selectSession(session.id)
+                        }
+                        onContextMenu={(e) => handleContextMenu(e, session.id)}
+                        onTouchStart={(e) => handleTouchStart(e, session.id)}
+                        onTouchMove={(e) => handleTouchMove(e, session.id)}
+                        onTouchEnd={() => handleTouchEnd(session.id)}
+                        onMouseDown={(e) => handleMouseDown(e, session.id)}
+                        onMouseMove={(e) => handleMouseMove(e, session.id)}
+                        onMouseUp={() => handleMouseUp(session.id)}
+                        onMouseLeave={handleMouseLeave}
                         style={{
-                          width: "280px",
-                          minHeight: "64px",
-                          borderRadius: "12px",
+                          transform: `translateX(${swipeOffset}px)`,
+                          transition: swipeState.isSwiping
+                            ? "none"
+                            : "transform 0.3s ease-out",
+                          userSelect: "none",
                           padding: "12px",
+                          borderRadius: "12px",
+                          minHeight: "64px",
+                          width: "100%",
+                          maxWidth: "352px",
                           display: "flex",
                           gap: "12px",
-                          cursor: "pointer",
                         }}
-                        className={`transition-colors hover:bg-[#F3F3EE] dark:hover:bg-[#363636] ${
+                        className={`cursor-pointer transition-colors hover:bg-[#F3F3EE] dark:hover:bg-[#363636] ${
                           selectedSessionId === session.id
                             ? "bg-[#F3F3EE] dark:bg-[#363636]"
                             : "bg-[#FFFFFF] dark:bg-[#2C2C2C]"
@@ -726,6 +753,7 @@ export function MessageList() {
                         </div>
 
                         <div className="flex-1 min-w-0">
+                          {/* Name and Time - Fill 276px, Hug 20px, space-between */}
                           <div
                             className="flex items-center justify-between"
                             style={{ height: "20px", marginBottom: "2px" }}>
@@ -752,6 +780,7 @@ export function MessageList() {
                                 : formatTime(session.createdAt)}
                             </span>
                           </div>
+                          {/* Text and Seen Icon - Fill 276px, Hug 16px, gap 8px */}
                           <div
                             className="flex items-center justify-between"
                             style={{ gap: "8px" }}>
@@ -776,68 +805,89 @@ export function MessageList() {
                           </div>
                         </div>
                       </div>
-
-                      {/* Archive Button - Fixed 64x64, radius 12px, padding 12px, gap 8px, #1E9A80 */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          console.log("Archive:", session.id);
-                        }}
-                        className="flex flex-col items-center justify-center bg-[#1E9A80] hover:bg-[#1a8a70] transition-colors"
-                        style={{
-                          width: "64px",
-                          height: "64px",
-                          borderRadius: "12px",
-                          padding: "12px",
-                          gap: "8px",
-                        }}>
-                        <Image
-                          src="/arc.svg"
-                          width={14}
-                          height={12}
-                          alt="Archive"
-                          className="flex-shrink-0"
-                          style={{ marginTop: "3px", marginLeft: "2.25px" }}
-                        />
-                        <span
-                          className="text-[#FFFFFF]"
-                          style={{
-                            fontSize: "12px",
-                            lineHeight: "16px",
-                            fontWeight: 500,
-                            letterSpacing: "0",
-                          }}>
-                          Archive
-                        </span>
-                      </button>
                     </div>
                   ) : (
                     <>
                       {/* For other items: Original swipe layout */}
                       {/* Swipe Action Buttons (background) */}
-                      <div className="absolute inset-0 flex">
-                        {/* Archive button (swipe right reveals this on left) */}
+                      {/* Swipe Action Buttons (background) */}
+                      <div className="absolute inset-0 flex justify-between">
+                        {/* Swipe RIGHT → Archive (appears on LEFT side) */}
                         <div
-                          className={`flex items-center justify-center bg-emerald-500 text-white transition-all ${
-                            swipeOffset > 30 ? "w-20" : "w-0"
+                          className={`flex items-center justify-start transition-all duration-200 ${
+                            swipeOffset > 30
+                              ? "w-20 opacity-100"
+                              : "w-0 opacity-0"
                           }`}>
-                          <div className="flex flex-col items-center gap-1">
-                            <Archive size={20} />
-                            <span className="text-xs">Archive</span>
-                          </div>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              console.log("Mark as unread:", session.id);
+                            }}
+                            className="flex flex-col items-center justify-center bg-[#1E9A80] hover:bg-[#1a8a70] transition-colors"
+                            style={{
+                              width: "64px",
+                              height: "64px",
+                              borderRadius: "12px",
+                              padding: "12px",
+                              gap: "8px",
+                            }}>
+                            <Image
+                              src="/unread.svg"
+                              width={14}
+                              height={12}
+                              alt="Unread"
+                              className="flex-shrink-0"
+                            />
+                            <span
+                              className="text-[#FFFFFF]"
+                              style={{
+                                fontSize: "12px",
+                                lineHeight: "16px",
+                                fontWeight: 500,
+                              }}>
+                              Unread
+                            </span>
+                          </button>
                         </div>
 
-                        <div className="flex-1" />
-
-                        {/* Unread button (swipe left reveals this on right) */}
+                        {/* Swipe LEFT → Unread (appears on RIGHT side) */}
                         <div
-                          className={`flex items-center justify-center bg-emerald-500 text-white transition-all ${
-                            swipeOffset < -30 ? "w-20" : "w-0"
+                          className={`flex items-center justify-end transition-all duration-200 ${
+                            swipeOffset < -30
+                              ? "w-20 opacity-100"
+                              : "w-0 opacity-0"
                           }`}>
-                          <div className="flex flex-col items-center gap-1">
-                            <MailOpen size={20} />
-                            <span className="text-xs">Unread</span>
-                          </div>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              console.log("Archive:", session.id);
+                            }}
+                            className="flex flex-col items-center justify-center bg-[#1E9A80] hover:bg-[#1a8a70] transition-colors"
+                            style={{
+                              width: "64px",
+                              height: "64px",
+                              borderRadius: "12px",
+                              padding: "12px",
+                              gap: "8px",
+                            }}>
+                            <Image
+                              src="/arc.svg"
+                              width={14}
+                              height={12}
+                              alt="Archive"
+                              className="flex-shrink-0"
+                            />
+                            <span
+                              className="text-[#FFFFFF]"
+                              style={{
+                                fontSize: "12px",
+                                lineHeight: "16px",
+                                fontWeight: 500,
+                              }}>
+                              Archive
+                            </span>
+                          </button>
                         </div>
                       </div>
 
