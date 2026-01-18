@@ -139,7 +139,22 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="h-screen flex bg-[#F3F3EE] dark:bg-[#111111] gap-3 p-3">
+    // <div className="h-screen flex bg-[#F3F3EE] dark:bg-[#111111] gap-3 p-3">
+    //   {/* Sidebar on the left */}
+    //   <Sidebar />
+
+    //   {/* Main content area with navbar on top */}
+    //   <div className="flex-1 flex flex-col gap-3 min-w-0">
+    //     <TopNavbar />
+    //     <div className="flex-1 flex overflow-auto gap-3 min-h-0">
+    //       {renderContent()}
+    //     </div>
+    //   </div>
+
+    //   <Modals />
+    //   <ContextMenu />
+    // </div>
+    <div className="min-h-screen flex bg-[#F3F3EE] dark:bg-[#111111] gap-3 p-3">
       {/* Sidebar on the left */}
       <Sidebar />
 
