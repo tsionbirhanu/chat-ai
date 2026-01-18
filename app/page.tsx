@@ -39,7 +39,7 @@ export default function ChatPage() {
     return (
       <div className="h-screen flex items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-10 h-10 animate-spin text-emerald-500" />
+          <Loader2 className="w-10 h-10 animate-spin text-[#1E9A80]" />
           <p className="text-gray-500">Loading...</p>
         </div>
       </div>
