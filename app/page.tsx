@@ -139,14 +139,14 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="h-screen flex bg-[#F3F3EE] dark:bg-[#111111] gap-3 p-3 overflow-hidden">
+    <div className="h-screen flex bg-[#F3F3EE] dark:bg-[#111111] gap-3 p-3">
       {/* Sidebar on the left */}
       <Sidebar />
 
       {/* Main content area with navbar on top */}
-      <div className="flex-1 flex flex-col gap-3 overflow-hidden min-w-0">
+      <div className="flex-1 flex flex-col gap-3 min-w-0">
         <TopNavbar />
-        <div className="flex-1 flex overflow-hidden gap-3 min-h-0">
+        <div className="flex-1 flex overflow-auto gap-3 min-h-0">
           {renderContent()}
         </div>
       </div>
