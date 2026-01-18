@@ -77,8 +77,12 @@ export default function SignupPage() {
         <div className="w-full max-w-md my-12">
           {/* Logo */}
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
-              <MessageCircle className="w-7 h-7 text-white" strokeWidth={2.5} />
+            <div className="w-12 h-12 flex items-center justify-center">
+              <img
+                src="/logo.svg"
+                alt="Logo"
+                className="w-10 h-10 object-contain"
+              />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Sign Up</h2>
@@ -234,7 +238,7 @@ export default function SignupPage() {
             <button
               type="submit"
               disabled={isLoading || (confirmPassword !== "" && password !== confirmPassword)}
-              className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold rounded-xl hover:from-emerald-600 hover:to-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-emerald-200 mt-6 group"
+              className="w-full py-3.5 bg-[#1E9A80] text-white font-semibold rounded-xl hover:bg-[#30bc9e] focus:outline-none focus:ring-4 focus:ring-emerald-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-6 group"
             >
               {isLoading ? (
                 <>

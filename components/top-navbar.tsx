@@ -45,7 +45,7 @@ export function TopNavbar() {
   };
 
   return (
-    <div className="w-full bg-[#FFFFFF] dark:bg-[#1C1C1C] rounded-[16px] mt-5">
+    <div className="w-full bg-[#FFFFFF] dark:bg-[#1C1C1C] rounded-[16px] mt-2">
       {/* Outer container: full width, radius 16px, padding 12/24 */}
       <div className="w-full px-6 py-3" style={{ padding: "12px 24px" }}>
         {/* Inner container: 1292px fill, height hug 32px, justify space-between, gap 24px */}
