@@ -63,10 +63,10 @@ export function Sidebar() {
   return (
     <div className="w-[72px] bg-[#F3F3EE] dark:bg-[#1C1C1C] flex flex-col items-center py-6 gap-6 h-screen">
       {/* Logo with Modal */}
-      <div className="relative" ref={logoRef}>
+      <div className="relative mb-3" ref={logoRef}>
         <div
           onClick={() => setShowLogoModal(!showLogoModal)}
-          className="w-[44px] h-[44px] flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity">
+          className="w-[44px] h-[44px] flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity mt-2">
           <Image
             src="/logo.svg"
             alt="Logo"

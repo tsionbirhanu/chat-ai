@@ -45,7 +45,7 @@ export function TopNavbar() {
   };
 
   return (
-    <div className="w-full bg-[#FFFFFF] dark:bg-[#1C1C1C] rounded-[16px]">
+    <div className="w-full bg-[#FFFFFF] dark:bg-[#1C1C1C] rounded-[16px] mt-5">
       {/* Outer container: full width, radius 16px, padding 12/24 */}
       <div className="w-full px-6 py-3" style={{ padding: "12px 24px" }}>
         {/* Inner container: 1292px fill, height hug 32px, justify space-between, gap 24px */}
@@ -96,7 +96,7 @@ export function TopNavbar() {
                 />
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Search"
                   className="flex-1 bg-transparent border-0 outline-none text-[#8796AF] placeholder-[#8796AF] dark:text-[#9CA3AF] dark:placeholder-[#6B7280] font-normal"
                   style={{
                     fontSize: "12px",
