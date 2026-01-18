@@ -615,10 +615,49 @@ export function MessageList() {
                     <div className="relative overflow-hidden">
                       {/* Swipe Action Buttons (background) */}
                       <div className="absolute inset-0 flex justify-between">
-                        {/* Swipe RIGHT → Archive (appears on LEFT side) */}
+                        {/* Swipe RIGHT → Unread (appears on LEFT side) */}
                         <div
                           className={`flex items-center justify-start transition-all duration-200 ${
                             swipeOffset > 30
+                              ? "w-20 opacity-100"
+                              : "w-0 opacity-0"
+                          }`}>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              console.log("Mark as unread:", session.id);
+                            }}
+                            className="flex flex-col items-center justify-center bg-[#1E9A80] hover:bg-[#1a8a70] transition-colors"
+                            style={{
+                              width: "64px",
+                              height: "64px",
+                              borderRadius: "12px",
+                              padding: "12px",
+                              gap: "8px",
+                            }}>
+                            <Image
+                              src="/unread.svg"
+                              width={14}
+                              height={12}
+                              alt="Unread"
+                              className="flex-shrink-0"
+                            />
+                            <span
+                              className="text-[#FFFFFF]"
+                              style={{
+                                fontSize: "12px",
+                                lineHeight: "16px",
+                                fontWeight: 500,
+                              }}>
+                              Unread
+                            </span>
+                          </button>
+                        </div>
+
+                        {/* Swipe LEFT → Archive (appears on RIGHT side) */}
+                        <div
+                          className={`flex items-center justify-end transition-all duration-200 ${
+                            swipeOffset < -30
                               ? "w-20 opacity-100"
                               : "w-0 opacity-0"
                           }`}>
@@ -650,45 +689,6 @@ export function MessageList() {
                                 fontWeight: 500,
                               }}>
                               Archive
-                            </span>
-                          </button>
-                        </div>
-
-                        {/* Swipe LEFT → Unread (appears on RIGHT side) */}
-                        <div
-                          className={`flex items-center justify-end transition-all duration-200 ${
-                            swipeOffset < -30
-                              ? "w-20 opacity-100"
-                              : "w-0 opacity-0"
-                          }`}>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              console.log("Mark as unread:", session.id);
-                            }}
-                            className="flex flex-col items-center justify-center bg-[#1E9A80] hover:bg-[#1a8a70] transition-colors"
-                            style={{
-                              width: "64px",
-                              height: "64px",
-                              borderRadius: "12px",
-                              padding: "12px",
-                              gap: "8px",
-                            }}>
-                            <Image
-                              src="/message.svg"
-                              width={14}
-                              height={12}
-                              alt="Unread"
-                              className="flex-shrink-0"
-                            />
-                            <span
-                              className="text-[#FFFFFF]"
-                              style={{
-                                fontSize: "12px",
-                                lineHeight: "16px",
-                                fontWeight: 500,
-                              }}>
-                              Unread
                             </span>
                           </button>
                         </div>

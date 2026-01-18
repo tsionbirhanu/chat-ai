@@ -137,7 +137,7 @@ export function Modals() {
           border: "1px solid #E8E5DF",
           padding: "12px",
         }}
-        className={`bg-white dark:bg-gray-800 shadow-2xl overflow-hidden z-50 ${
+        className={`bg-white dark:bg-gray-800 overflow-hidden z-50 ${
           isPositioned
             ? "fixed"
             : "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
